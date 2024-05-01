@@ -1,0 +1,32 @@
+.text-center{
+    text-align: center;
+}
+
+.w100{
+    width: 100% !important;
+}
+
+mat-form-field{
+    width: 100% !important;
+}
+
+.headerText{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.titleBar{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.p-60{
+    padding-top: 60px !important;
+}
+
+.fLabel{
+    font-size: 16px;
+    font-family: Montserrat;
+}
+

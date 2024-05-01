@@ -1,0 +1,238 @@
+<div class="example-container">
+  <div class="form-container">
+    <form [formGroup]="loginForm" (submit)="submit()">
+      <div class="row" style="padding-top: 60px;">
+        <div class="text-center">
+          <span class="headerText">Contractor Requisition Form</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">Please take a moment to fill out all required fields below in order to initial the contractor requisition process effectively and ensure timely processing.</span>
+      </div>
+      <div class="row pt-4">
+        <span>*&nbsp;Indicates a required field,</span>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
+          <span class="titleBar">Requisition Details</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;Requisition Category</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <mat-select formControlName="requisitionCategory" required>
+              @for (reqType of requisitionTypes; track reqType) {
+              <mat-option [value]="reqType.id">{{reqType.id}}</mat-option>
+              }
+            </mat-select>
+            <mat-error
+              *ngIf="loginForm.controls['requisitionCategory'].touched && loginForm.controls['requisitionCategory'].invalid">
+              <span *ngIf="loginForm.controls['requisitionCategory'].errors?.['required']">This field is
+                mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;Title/Role</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <mat-select formControlName="title" required>
+              @for (ttlType of titleTypes; track ttlType) {
+              <mat-option [value]="ttlType.id">{{ttlType.id}}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="loginForm.controls['title'].touched && loginForm.controls['title'].invalid">
+              <span *ngIf="loginForm.controls['title'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;No of Openings</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <input matInput formControlName="numberOfOpenings" required numberOnly>
+            <mat-error
+              *ngIf="loginForm.controls['numberOfOpenings'].touched && loginForm.controls['numberOfOpenings'].invalid">
+              <span *ngIf="loginForm.controls['numberOfOpenings'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"><span class="fLabel">*&nbsp;Contact Start Date</span></div>
+        <div class="col-md-6"><span class="fLabel">*&nbsp;Contact End Date</span></div>
+      </div>
+      <div class="datePickerLine row">
+        <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput formControlName="cStartDate" [matDatepicker]="picker">
+            <mat-hint>Start date is pre-filled with value that is 30 days ahead of the current date.</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="loginForm.controls['cStartDate'].touched && loginForm.controls['cStartDate'].invalid">
+              <span *ngIf="loginForm.controls['cStartDate'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput formControlName="cEndDate" [matDatepicker]="picker2">
+            <mat-hint>End date is pre-filled with end date of fiscal year date.</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="loginForm.controls['cEndDate'].touched && loginForm.controls['cEndDate'].invalid">
+              <span *ngIf="loginForm.controls['cEndDate'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;Worksite Address</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput formControlName="worksiteAddress">
+            <mat-error *ngIf="loginForm.controls['worksiteAddress'].touched && loginForm.controls['worksiteAddress'].invalid">
+              <span *ngIf="loginForm.controls['worksiteAddress'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;CAI Contract Manager</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <mat-select formControlName="caiContractManager" required>
+              @for (manager of caiContractManagerList; track manager) {
+              <mat-option [value]="manager.id">{{manager.id}}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="loginForm.controls['caiContractManager'].touched && loginForm.controls['caiContractManager'].invalid">
+              <span *ngIf="loginForm.controls['caiContractManager'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <span class="fLabel">*&nbsp;Agency Interview Type</span>
+            </div>
+            <div class="col-md-12">
+              <mat-radio-group formControlName="agencyInterviewType" aria-label="Select an option">
+                <mat-radio-button value="Webcam">Webcam</mat-radio-button><br>
+                <mat-radio-button value="Person">Person</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <span class="fLabel">*&nbsp;Expenses Allowed</span>
+            </div>
+            <div class="col-md-12">
+              <mat-radio-group formControlName="expensesAllowed" aria-label="Select an option">
+                <mat-radio-button value="Yes">Yes</mat-radio-button><br>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <span class="fLabel">*&nbsp;Temp To Hire</span>
+            </div>
+            <div class="col-md-12">
+              <mat-radio-group formControlName="tempToHire" aria-label="Select an option">
+                <mat-radio-button value="Yes">Yes</mat-radio-button><br>
+                <mat-radio-button value="No">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;Position Type</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <mat-select formControlName="positionType" required>
+              @for (position of positionTypeList; track position) {
+              <mat-option [value]="position.id">{{position.id}}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="loginForm.controls['positionType'].touched && loginForm.controls['positionType'].invalid">
+              <span *ngIf="loginForm.controls['positionType'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;Workflow Process Designation</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <mat-select formControlName="workflowProcessDesignation" required>
+              @for (wpd of workflowProcessDesignationList; track wpd) {
+              <mat-option [value]="wpd.id">{{wpd.id}}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="loginForm.controls['workflowProcessDesignation'].touched && loginForm.controls['workflowProcessDesignation'].invalid">
+              <span *ngIf="loginForm.controls['workflowProcessDesignation'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;Estimated Project Completion Date</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput formControlName="estimatedProjectCompletionDate" [matDatepicker]="picker3">
+            <mat-hint>End date is pre-filled with end date of fiscal year date.</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+            <mat-error *ngIf="loginForm.controls['estimatedProjectCompletionDate'].touched && loginForm.controls['estimatedProjectCompletionDate'].invalid">
+              <span *ngIf="loginForm.controls['estimatedProjectCompletionDate'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel">*&nbsp;Work Arrangements</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <mat-select formControlName="workArrangements" required>
+              @for (work of workArrangementsList; track work) {
+              <mat-option [value]="work.id">{{work.id}}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="loginForm.controls['workArrangements'].touched && loginForm.controls['workArrangements'].invalid">
+              <span *ngIf="loginForm.controls['workArrangements'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
