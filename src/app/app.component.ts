@@ -62,6 +62,7 @@ export class AppComponent {
   positionTypeList = [{id:'Standard'},{id:'On Contract'}];
   workflowProcessDesignationList= [{id:'CWP'},{id:'CWP 2'}];
   workArrangementsList = [{id:'Work Arrangement Option 1'},{id:'Work Arrangement Option 2'}];
+  rateOptionsList = [{id:'Per Hour'},{id:'Per Day'}];
 
   loginForm: FormGroup;
 
@@ -84,6 +85,10 @@ export class AppComponent {
       workflowProcessDesignation:['', Validators.required],
       estimatedProjectCompletionDate:[new Date(), Validators.required],
       workArrangements:['', Validators.required],
+      hoursPerDay:['', Validators.required],
+      daysPerWeek:['', Validators.required],
+      maxPayRate:['', Validators.required],
+      rate:['Per Hour', Validators.required],
     });
   }
 
