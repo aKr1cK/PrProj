@@ -7,10 +7,11 @@
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">Please take a moment to fill out all required fields below in order to initial the contractor requisition process effectively and ensure timely processing.</span>
+        <span class="fLabel">Please take a moment to fill out all required fields below in order to initial the
+          contractor requisition process effectively and ensure timely processing.</span>
       </div>
       <div class="row pt-4">
-        <span>*&nbsp;Indicates a required field,</span>
+        <span><span style="color:red">*</span>&nbsp;Indicates a required field,</span>
       </div>
       <div class="row pt-4">
         <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
@@ -18,7 +19,7 @@
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;Requisition Category</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Requisition Category</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -37,7 +38,7 @@
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;Title/Role</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Title/Role</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -54,7 +55,7 @@
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;No of Openings</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;No of Openings</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -67,49 +68,54 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6"><span class="fLabel">*&nbsp;Contact Start Date</span></div>
-        <div class="col-md-6"><span class="fLabel">*&nbsp;Contact End Date</span></div>
-      </div>
       <div class="datePickerLine row">
         <div class="col-md-6">
-          <mat-form-field class="form-field" appearance="outline">
-            <input matInput formControlName="cStartDate" [matDatepicker]="picker">
-            <mat-hint>Start date is pre-filled with value that is 30 days ahead of the current date.</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="loginForm.controls['cStartDate'].touched && loginForm.controls['cStartDate'].invalid">
-              <span *ngIf="loginForm.controls['cStartDate'].errors?.['required']">This field is mandatory.</span>
-            </mat-error>
-          </mat-form-field>
+          <div class="row">
+            <div class="col-md-12"><span class="fLabel"><span style="color:red">*</span>&nbsp;Contact Start Date</span>
+            </div>
+            <div class="col-md-12"><mat-form-field class="form-field" appearance="outline">
+                <input matInput formControlName="cStartDate" [matDatepicker]="picker">
+                <mat-hint>Start date is pre-filled with value that is 30 days ahead of the current date.</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="loginForm.controls['cStartDate'].touched && loginForm.controls['cStartDate'].invalid">
+                  <span *ngIf="loginForm.controls['cStartDate'].errors?.['required']">This field is mandatory.</span>
+                </mat-error>
+              </mat-form-field></div>
+          </div>
         </div>
         <div class="col-md-6">
-          <mat-form-field class="form-field" appearance="outline">
-            <input matInput formControlName="cEndDate" [matDatepicker]="picker2">
-            <mat-hint>End date is pre-filled with end date of fiscal year date.</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-            <mat-error *ngIf="loginForm.controls['cEndDate'].touched && loginForm.controls['cEndDate'].invalid">
-              <span *ngIf="loginForm.controls['cEndDate'].errors?.['required']">This field is mandatory.</span>
-            </mat-error>
-          </mat-form-field>
+          <div class="row">
+            <div class="col-md-12"><span class="fLabel"><span style="color:red">*</span>&nbsp;Contact End Date</span>
+            </div>
+            <div class="col-md-12"><mat-form-field class="form-field" appearance="outline">
+                <input matInput formControlName="cEndDate" [matDatepicker]="picker2">
+                <mat-hint>End date is pre-filled with end date of fiscal year date.</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error *ngIf="loginForm.controls['cEndDate'].touched && loginForm.controls['cEndDate'].invalid">
+                  <span *ngIf="loginForm.controls['cEndDate'].errors?.['required']">This field is mandatory.</span>
+                </mat-error>
+              </mat-form-field></div>
+          </div>
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;Worksite Address</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Worksite Address</span>
       </div>
       <div class="row">
         <div class="col-md-12">
           <mat-form-field class="form-field" appearance="outline">
             <input matInput formControlName="worksiteAddress">
-            <mat-error *ngIf="loginForm.controls['worksiteAddress'].touched && loginForm.controls['worksiteAddress'].invalid">
+            <mat-error
+              *ngIf="loginForm.controls['worksiteAddress'].touched && loginForm.controls['worksiteAddress'].invalid">
               <span *ngIf="loginForm.controls['worksiteAddress'].errors?.['required']">This field is mandatory.</span>
             </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;CAI Contract Manager</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;CAI Contract Manager</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -119,8 +125,10 @@
               <mat-option [value]="manager.id">{{manager.id}}</mat-option>
               }
             </mat-select>
-            <mat-error *ngIf="loginForm.controls['caiContractManager'].touched && loginForm.controls['caiContractManager'].invalid">
-              <span *ngIf="loginForm.controls['caiContractManager'].errors?.['required']">This field is mandatory.</span>
+            <mat-error
+              *ngIf="loginForm.controls['caiContractManager'].touched && loginForm.controls['caiContractManager'].invalid">
+              <span *ngIf="loginForm.controls['caiContractManager'].errors?.['required']">This field is
+                mandatory.</span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -129,7 +137,7 @@
         <div class="col-md-4">
           <div class="row">
             <div class="col-md-12">
-              <span class="fLabel">*&nbsp;Agency Interview Type</span>
+              <span class="fLabel"><span style="color:red">*</span>&nbsp;Agency Interview Type</span>
             </div>
             <div class="col-md-12">
               <mat-radio-group formControlName="agencyInterviewType" aria-label="Select an option">
@@ -142,7 +150,7 @@
         <div class="col-md-4">
           <div class="row">
             <div class="col-md-12">
-              <span class="fLabel">*&nbsp;Expenses Allowed</span>
+              <span class="fLabel"><span style="color:red">*</span>&nbsp;Expenses Allowed</span>
             </div>
             <div class="col-md-12">
               <mat-radio-group formControlName="expensesAllowed" aria-label="Select an option">
@@ -155,7 +163,7 @@
         <div class="col-md-4">
           <div class="row">
             <div class="col-md-12">
-              <span class="fLabel">*&nbsp;Temp To Hire</span>
+              <span class="fLabel"><span style="color:red">*</span>&nbsp;Temp To Hire</span>
             </div>
             <div class="col-md-12">
               <mat-radio-group formControlName="tempToHire" aria-label="Select an option">
@@ -167,7 +175,7 @@
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;Position Type</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Position Type</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -184,7 +192,7 @@
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;Workflow Process Designation</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Workflow Process Designation</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -194,14 +202,16 @@
               <mat-option [value]="wpd.id">{{wpd.id}}</mat-option>
               }
             </mat-select>
-            <mat-error *ngIf="loginForm.controls['workflowProcessDesignation'].touched && loginForm.controls['workflowProcessDesignation'].invalid">
-              <span *ngIf="loginForm.controls['workflowProcessDesignation'].errors?.['required']">This field is mandatory.</span>
+            <mat-error
+              *ngIf="loginForm.controls['workflowProcessDesignation'].touched && loginForm.controls['workflowProcessDesignation'].invalid">
+              <span *ngIf="loginForm.controls['workflowProcessDesignation'].errors?.['required']">This field is
+                mandatory.</span>
             </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;Estimated Project Completion Date</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Estimated Project Completion Date</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -210,14 +220,16 @@
             <mat-hint>End date is pre-filled with end date of fiscal year date.</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3></mat-datepicker>
-            <mat-error *ngIf="loginForm.controls['estimatedProjectCompletionDate'].touched && loginForm.controls['estimatedProjectCompletionDate'].invalid">
-              <span *ngIf="loginForm.controls['estimatedProjectCompletionDate'].errors?.['required']">This field is mandatory.</span>
+            <mat-error
+              *ngIf="loginForm.controls['estimatedProjectCompletionDate'].touched && loginForm.controls['estimatedProjectCompletionDate'].invalid">
+              <span *ngIf="loginForm.controls['estimatedProjectCompletionDate'].errors?.['required']">This field is
+                mandatory.</span>
             </mat-error>
           </mat-form-field>
         </div>
       </div>
       <div class="row pt-4">
-        <span class="fLabel">*&nbsp;Work Arrangements</span>
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Work Arrangements</span>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -227,7 +239,8 @@
               <mat-option [value]="work.id">{{work.id}}</mat-option>
               }
             </mat-select>
-            <mat-error *ngIf="loginForm.controls['workArrangements'].touched && loginForm.controls['workArrangements'].invalid">
+            <mat-error
+              *ngIf="loginForm.controls['workArrangements'].touched && loginForm.controls['workArrangements'].invalid">
               <span *ngIf="loginForm.controls['workArrangements'].errors?.['required']">This field is mandatory.</span>
             </mat-error>
           </mat-form-field>
