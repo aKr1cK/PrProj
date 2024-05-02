@@ -34,6 +34,36 @@ mat-form-field{
     font-family: Montserrat;
 }
 
+.fileLegends{
+    display: flex;
+    flex-direction: column;
+    color: #38424B;
+    font-size: 14px;
+    letter-spacing: 0.02px;
+    font-family: MontSerrat;
+}
+
+.uploadArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3F7F5;
+    border: 1px dotted #8FB3A3;
+}
+
+.buttonRow{
+    display: flex;
+    gap: 24px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.btn-light{
+    padding: 16px 36px 16px 36px;
+    height: 56px;
+}
+
 /* .mat-mdc-text-field-wrapper{
     height: 50px !important;
 }

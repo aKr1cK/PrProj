@@ -315,6 +315,208 @@
           </div>
         </div>
       </div>
+      <div class="row pt-4">
+        <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
+          <span class="titleBar">Requisition Description</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12">
+          <span style="float: left;" class="fLabel"><span style="color:red">*</span>&nbsp;Short Job Description</span>
+          <span style="float: right;text-decoration: underline;color: #165D5D;font-size: 16px;"><a>Suggested Description <span style="float: right;">+</span></a></span>&nbsp;
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea class="form-control" style="resize: none;" formControlName="shortJobDescription" rows="5"></textarea>
+          <mat-error
+            *ngIf="loginForm.controls['shortJobDescription'].touched && loginForm.controls['shortJobDescription'].invalid">
+            <span *ngIf="loginForm.controls['shortJobDescription'].errors?.['required']">This field is
+              mandatory.</span>
+          </mat-error>
+        </div>
+        <div class="col-md-12">
+          <span style="float: right;">{{loginForm.controls['shortJobDescription'].value.length}}/254</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12">
+          <span style="float: left;" class="fLabel">Complete Job Description</span>
+          <span style="float: right;text-decoration: underline;color: #165D5D;font-size: 16px;"><a>Suggested Description <span style="float: right;">+</span></a></span>&nbsp;
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea class="form-control" style="resize: none;" formControlName="completeJobDescription" rows="7"></textarea>
+          <mat-error
+            *ngIf="loginForm.controls['completeJobDescription'].touched && loginForm.controls['completeJobDescription'].invalid">
+            <span *ngIf="loginForm.controls['completeJobDescription'].errors?.['required']">This field is
+              mandatory.</span>
+          </mat-error>
+        </div>
+        <div class="col-md-12">
+          <span style="float: right;">{{loginForm.controls['completeJobDescription'].value.length}}/10000</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
+          <span class="titleBar">Contact Information</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Client Contact</span>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <input matInput formControlName="clientContact" required>
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-error
+            *ngIf="loginForm.controls['clientContact'].touched && loginForm.controls['clientContact'].invalid">
+            <span *ngIf="loginForm.controls['clientContact'].errors?.['required']">This field is
+              mandatory.</span>
+          </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Req. Owner</span>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <input matInput formControlName="reqOwner" required>
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-error
+            *ngIf="loginForm.controls['reqOwner'].touched && loginForm.controls['reqOwner'].invalid">
+            <span *ngIf="loginForm.controls['reqOwner'].errors?.['required']">This field is
+              mandatory.</span>
+          </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Reports To</span>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="form-field .w100" appearance="outline">
+            <input matInput formControlName="reportsTo" required>
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-error
+            *ngIf="loginForm.controls['reportsTo'].touched && loginForm.controls['reportsTo'].invalid">
+            <span *ngIf="loginForm.controls['reportsTo'].errors?.['required']">This field is
+              mandatory.</span>
+          </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- ================== -->
+      <div class="row pt-4">
+        <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
+          <span class="titleBar">Client Information</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Work Location</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput formControlName="workLocation">
+            <mat-error
+              *ngIf="loginForm.controls['workLocation'].touched && loginForm.controls['workLocation'].invalid">
+              <span *ngIf="loginForm.controls['workLocation'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Cost Center</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput formControlName="costCenter">
+            <mat-error
+              *ngIf="loginForm.controls['costCenter'].touched && loginForm.controls['costCenter'].invalid">
+              <span *ngIf="loginForm.controls['costCenter'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <span class="fLabel"><span style="color:red">*</span>&nbsp;Project</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="outline">
+            <input matInput formControlName="projectName">
+            <mat-error
+              *ngIf="loginForm.controls['projectName'].touched && loginForm.controls['projectName'].invalid">
+              <span *ngIf="loginForm.controls['projectName'].errors?.['required']">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
+          <span class="titleBar">Skill</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        TODO
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
+          <span class="titleBar">Justification Attachments</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12">
+          <span class="fLabel">Justification Comments</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea class="form-control" style="resize: none;" formControlName="justificationComments" rows="5"></textarea>
+          <mat-error
+            *ngIf="loginForm.controls['justificationComments'].touched && loginForm.controls['justificationComments'].invalid">
+            <span *ngIf="loginForm.controls['justificationComments'].errors?.['required']">This field is
+              mandatory.</span>
+          </mat-error>
+        </div>
+        <div class="col-md-12">
+          <span style="float: right;">{{loginForm.controls['justificationComments'].value.length}}/1000</span>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-md-12">
+          <span class="fLabel">Justification Attachments</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 uploadArea">
+          <div style=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/>
+          </svg></div>
+          <div>UPLOAD FILE</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 fileLegends">
+          <div>File number limit:1</div>
+          <div>Single file size limit:&nbsp;10MB</div>
+          <div>Allowed file types:&nbsp;word,Excel,PPT,PDF,Image,Video,Audio</div>
+        </div>
+      </div>
+      <div class="row pt-5">
+        <div class="col-md-12 buttonRow">
+          <button type="button" class="btn btn-light">SAVE AS DRAFT</button>
+          <button type="button" class="btn btn-light">SUBMIT FOR HR REVIEW</button>
+          <button type="button" class="btn btn-light">CANCEL</button>
+        </div>
+      </div>
     </form>
   </div>
 </div>

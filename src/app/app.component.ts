@@ -48,7 +48,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatIconModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -89,6 +90,15 @@ export class AppComponent {
       daysPerWeek:['', Validators.required],
       maxPayRate:['', Validators.required],
       rate:['Per Hour', Validators.required],
+      shortJobDescription:['', Validators.required],
+      completeJobDescription:['', Validators.required],
+      clientContact:['', Validators.required],
+      reqOwner:['', Validators.required],
+      reportsTo:['', Validators.required],
+      workLocation:['', Validators.required],
+      costCenter:['', Validators.required],
+      projectName:['', Validators.required],
+      justificationComments:['', Validators.required],
     });
   }
 
