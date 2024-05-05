@@ -31,7 +31,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -49,7 +49,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatDatepickerModule,
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -66,6 +67,10 @@ export class AppComponent {
   rateOptionsList = [{id:'Per Hour'},{id:'Per Day'}];
 
   loginForm: FormGroup;
+  inputSkill: any;
+  inputReq: any;
+  inputYoe: any;
+  showAdd: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder
@@ -97,6 +102,10 @@ export class AppComponent {
       reportsTo:['', Validators.required],
       workLocation:['', Validators.required],
       costCenter:['', Validators.required],
+      skills: new FormArray([
+        new FormControl({skill:'SQL',req:"Database",yoe:"3"}),
+        new FormControl({skill:'EXCEL',req:"Calculate",yoe:"5"}),
+      ]),
       projectName:['', Validators.required],
       justificationComments:['', Validators.required],
     });
@@ -104,6 +113,25 @@ export class AppComponent {
 
   ngOnInit() {
     
+  }
+
+  get skills(): FormArray {
+    return this.loginForm.get('albums') as FormArray;
+  }
+
+  removeSkill(index: any){
+    this.loginForm.get('skills')?.value.splice(index,1);
+  }
+
+  addSkill(){
+    if(this.inputSkill === "" || this.inputReq === "" || this.inputYoe === ""){
+      return;
+    }
+    this.loginForm.get('skills')?.value.push({skill:this.inputSkill,req:this.inputReq,yoe:this.inputYoe})
+    this.inputSkill = "";
+    this.inputReq = "";
+    this.inputYoe = "";
+    this.showAdd = false;
   }
 
   submit() {

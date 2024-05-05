@@ -471,7 +471,35 @@
         </div>
       </div>
       <div class="row pt-4">
-        TODO
+        <span class="fLabel">Required/Desired Skills</span>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row" style="background-color: #f4f3f0;padding: 15px;">
+            <div class="col-md-4">Skill</div>
+            <div class="col-md-5">Required/Desired Skill</div>
+            <div class="col-md-3">Years of Experience</div>
+          </div>
+          <ng-container *ngFor="let skill of loginForm.get('skills')?.value;index as i">
+            <div class="row">
+              <div class="col-md-4"><mat-icon fontIcon="close" aria-hidden="false" style="position: relative;top: 6px;"
+                  (click)="removeSkill(i)"></mat-icon>&nbsp;&nbsp;{{skill.skill}}</div>
+              <div class="col-md-5">{{skill.req}}</div>
+              <div class="col-md-3">{{skill.yoe}}</div>
+            </div>
+          </ng-container>
+          <div class="row pt-2">
+            <div class="col-md-2"><button type="button" class="btn btn-light" (click)="showAdd = !showAdd">ADD
+                SKILL</button></div>
+          </div>
+          <div class="row pt-2" *ngIf="showAdd">
+            <div class="col-md-4"><input matInput [(ngModel)]="inputSkill" [ngModelOptions]="{standalone: true}"></div>
+            <div class="col-md-4"><input matInput [(ngModel)]="inputReq" [ngModelOptions]="{standalone: true}"></div>
+            <div class="col-md-4"><input matInput [(ngModel)]="inputYoe"
+                [ngModelOptions]="{standalone: true}">&nbsp;&nbsp;&nbsp;&nbsp;<mat-icon fontIcon="add"
+                aria-hidden="false" style="position: relative;top: 6px;" (click)="addSkill()"></mat-icon></div>
+          </div>
+        </div>
       </div>
       <div class="row pt-4">
         <div class="col-md-12" style="background-color: #f4f3f0;padding: 15px;">
@@ -504,7 +532,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 uploadArea">
-          <div style=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-arrow-up-short" viewBox="0 0 16 16">
               <path fill-rule="evenodd"
                 d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5" />
