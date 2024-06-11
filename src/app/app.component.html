@@ -1,5 +1,15 @@
 <div class="example-container">
+  <ul>
+  @for (item of items; track item) {
+    <li (click)="getName(item)">{{item}}</li>
+  }
+</ul>
   <div class="form-container">
+    <div class="col-md-12 buttonRow">
+      <button type="button" (click)="openDialog()" class="btn btn-light">SAVE AS DRAFT</button>
+      <button type="button" (click)="openDialog()" class="btn btn-light">SUBMIT FOR HR REVIEW</button>
+      <button type="button" (click)="openDialog()" class="btn btn-light">CANCEL</button>
+    </div>
     <form [formGroup]="loginForm" (submit)="submit()">
       <div class="row" style="padding-top: 60px;">
         <div class="text-center">
@@ -549,9 +559,9 @@
       </div>
       <div class="row pt-5">
         <div class="col-md-12 buttonRow">
-          <button type="button" class="btn btn-light">SAVE AS DRAFT</button>
-          <button type="button" class="btn btn-light">SUBMIT FOR HR REVIEW</button>
-          <button type="button" class="btn btn-light">CANCEL</button>
+          <button type="button" (click)="openDialog()" class="btn btn-light">SAVE AS DRAFT</button>
+          <button type="button" (click)="openDialog()" class="btn btn-light">SUBMIT FOR HR REVIEW</button>
+          <button type="button" (click)="openDialog()" class="btn btn-light">CANCEL</button>
         </div>
       </div>
     </form>

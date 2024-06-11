@@ -23,7 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
@@ -33,6 +33,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RequestorDialog } from './dialog/requestor-dialog';
 
 
 @Component({
@@ -56,7 +57,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  items = ['SATYA','TORD']
   title = 'prproject';
+
+  getName(name: any){
+    alert(name)
+  }
 
   requisitionTypes = [{id:'Computer Operation Manager 1'},{id:'Computer Operation Manager 2'}];
   titleTypes = [{id:'Computer Operation Manager 1'},{id:'Computer Operation Manager 2'}];
@@ -73,7 +79,8 @@ export class AppComponent {
   showAdd: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {
     
     this.loginForm = this.formBuilder.group({
@@ -139,6 +146,19 @@ export class AppComponent {
       return;
     }
     console.log(this.loginForm.value);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RequestorDialog, {
+      height:'455px',
+      width:'808px',
+      data: {name: 'SATYA', animal: "human"},
+      panelClass: 'custom-modalbox'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

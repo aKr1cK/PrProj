@@ -1,0 +1,35 @@
+::ng-deep .custom-modalbox {
+    // mat-dialog-container {
+    //     padding: 47px 64px;
+    // }
+    .mat-mdc-dialog-component-host{
+        background-color: yellow;
+        background-color: yellow;
+        display: flex;
+        height: 100%;
+        .containerModal{
+            flex: 1;
+            padding: 64px 47px;
+            display: flex;
+            flex-direction: column;
+            .titleDiv{
+                height: 28px;
+            }
+            .contentDiv{
+                flex: 1;
+                border: 1px solid #707070;
+                display: flex;
+                .actualContent{
+                   flex: 1;
+                   padding: 13px 18px;
+                }
+            }
+            .buttonDiv{
+                height: 72px;
+                display: flex;
+                justify-content: end;
+                align-items: end;
+            }
+        }
+    }
+}
