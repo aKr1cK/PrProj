@@ -214,6 +214,7 @@ export class AppComponent {
   openFile(file: any): void {
     const dialogRef = this.dialog.open(FileViewerComponent, {
       data: file,
+      width:'80vw',
       panelClass: 'custom-modalbox'
     });
 

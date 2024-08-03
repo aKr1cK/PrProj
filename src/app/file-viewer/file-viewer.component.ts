@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Inject, OnInit } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
@@ -24,27 +24,57 @@ import * as mammoth from 'mammoth';
       CommonModule
     ],
   })
-  export class FileViewerComponent implements OnInit {
+  export class FileViewerComponent implements AfterViewInit {
     public viewer: string = '';
     htmlContent: any;
     imageUrl: string  = '';
+
+    @ViewChild('webviewer', { static: true }) webviewer!: ElementRef;
+
+    private instance: any;
+
     constructor(
       public dialogRef: MatDialogRef<FileViewerComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
     ) {}
 
-    ngOnInit(): void {  
+    ngAfterViewInit() {
+      
       if(this.data.type.includes('image')){
         this.viewer = 'image';
+        this.renderFile();
       }else if(this.data.type === 'application/msword' || this.data.type.includes('officedocument') || this.data.type === 'application/msword'){
         this.viewer = 'docx';
+        this.loadWebViewer().then(() => {
+          this.instance = (window as any).WebViewer({
+            //path: 'assets/webviewer/public', // Adjust this path as needed   CORRECT
+            path:'node_modules/@pdftron/webviewer/public',
+            initialDoc: '', // This will be set after the file is selected
+          }, this.webviewer.nativeElement).then((instance: any) => {
+            this.instance = instance;
+            this.renderFile();
+          });
+        });
       }else if(this.data.type  == 'text/plain'){
         this.viewer = 'text';
+        this.renderFile();
       }else{
         this.viewer = 'notSupported';
+        this.renderFile();
       }
-      this.renderFile();
     }
+
+    private loadWebViewer(): Promise<void> {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = '/assets/webviewer/webviewer.min.js'; // Adjust this path as needed CORRECT
+        //script.src = './node_modules/@pdftron/webviewer/webviewer.min.js'; // Adjust this path as neede
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load WebViewer script'));
+        document.head.appendChild(script);
+      });
+    }
+    
 
     async renderFile() {
       const arrayBuffer = await this.readFile(this.data);//blob
@@ -54,7 +84,12 @@ import * as mammoth from 'mammoth';
           this.imageUrl = URL.createObjectURL(blob);
           break;
         case 'docx':
-          this.htmlContent = await this.convertDocxToHtml(arrayBuffer);
+          //this.htmlContent = await this.convertDocxToHtml(arrayBuffer);
+          if (this.instance) {
+            this.instance.Core.documentViewer.loadDocument(arrayBuffer, {
+              filename: 'document.docx',
+            });
+          }
           break;
         case 'text':
           let textBlob = new Blob([arrayBuffer],{ type: 'text/plain' });
