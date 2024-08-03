@@ -34,6 +34,12 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestorDialog } from './dialog/requestor-dialog';
+import * as mammoth from 'mammoth';
+import { Document, Packer, Paragraph, TextRun } from "docx";
+import * as htmlDocx from 'html-docx-js';
+import * as JSZip from 'jszip';
+import { readFileSync } from 'fs';
+import { FileViewerComponent } from './file-viewer/file-viewer.component';
 
 
 @Component({
@@ -59,6 +65,8 @@ import { RequestorDialog } from './dialog/requestor-dialog';
 export class AppComponent {
   items = ['SATYA','TORD']
   title = 'prproject';
+  myFile: any;
+  htmlContent: any;
 
   getName(name: any){
     alert(name)
@@ -153,6 +161,59 @@ export class AppComponent {
       height:'455px',
       width:'808px',
       data: {name: 'SATYA', animal: "human"},
+      panelClass: 'custom-modalbox'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  // handleFileInput(files: any){
+    
+  //   let file = files.currentTarget.files[0];
+  //   const reader = new FileReader();
+  //   reader.onload = function(e: any) {
+  //     debugger;
+  //       const blob = new Blob([new Uint8Array(e?.target?.result)], {type: file.type });
+  //       console.log(blob);
+  //       mammoth.convertToHtml({blob} as any).then((result)=>{
+  //         debugger;
+  //       },(error)=>{
+  //         debugger;
+  //       })
+  //   };
+  //   reader.readAsArrayBuffer(file);
+  //   /**/
+  // }
+
+  async onFileChange(event: any) {
+    const file = event.target.files[0];
+    // if (file) {
+    //   const arrayBuffer = await this.readFile(file);
+    //   this.htmlContent = await this.convertDocxToHtml(arrayBuffer);
+    //   this.openFile(this.htmlContent);
+    // }
+    this.openFile(file);
+  }
+
+  readFile(file: File): Promise<ArrayBuffer> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as ArrayBuffer);
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  async convertDocxToHtml(arrayBuffer: ArrayBuffer): Promise<string> {
+    const result = await mammoth.convertToHtml({ arrayBuffer });
+    return result.value;
+  }
+
+  openFile(file: any): void {
+    const dialogRef = this.dialog.open(FileViewerComponent, {
+      data: file,
       panelClass: 'custom-modalbox'
     });
 
