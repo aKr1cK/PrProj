@@ -2,8 +2,19 @@
     <span style="float: right;" (click)="closeDialog()">Close</span>
 </div>
 <div style="overflow: auto;padding: 20px;">
-    <!-- <div *ngIf="viewer == 'docx' || viewer == 'text'" [innerHTML]="htmlContent"></div> -->
+    <div *ngIf="viewer == 'docx' || viewer == 'text'" [innerHTML]="htmlContent"></div>
     <img *ngIf="viewer == 'image'" [src]="imageUrl" alt="Fetched Image">
-    <div *ngIf="viewer == 'notSupported'">No Preview Available</div>
-    <div #webviewer style="width: 100%; height: 100vh;" ></div>
+    <table *ngIf="viewer == 'excel'">
+        <thead>
+          <tr>
+            <th *ngFor="let header of data[0]">{{ header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data.slice(1)">
+            <td *ngFor="let cell of row">{{ cell }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="viewer == 'notSupported'">No Preview Available</div>
 </div>

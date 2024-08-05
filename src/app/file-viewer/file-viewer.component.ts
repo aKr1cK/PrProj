@@ -6,6 +6,8 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, Ma
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import * as mammoth from 'mammoth';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
     selector: 'file-viewer-modal',
@@ -119,6 +121,18 @@ import * as mammoth from 'mammoth';
         this.htmlContent = text.replaceAll(/\n/g, '<br>');
       };
       reader.readAsText(blob);
+    }
+
+    convertToExcel(){
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+        this.data = <any[][]>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+      };
+      reader.readAsBinaryString(this.data);
     }
   
     closeDialog(): void {

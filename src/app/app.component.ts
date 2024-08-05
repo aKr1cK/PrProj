@@ -40,6 +40,8 @@ import * as htmlDocx from 'html-docx-js';
 import * as JSZip from 'jszip';
 import { readFileSync } from 'fs';
 import { FileViewerComponent } from './file-viewer/file-viewer.component';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -189,12 +191,11 @@ export class AppComponent {
 
   async onFileChange(event: any) {
     const file = event.target.files[0];
-    // if (file) {
-    //   const arrayBuffer = await this.readFile(file);
-    //   this.htmlContent = await this.convertDocxToHtml(arrayBuffer);
-    //   this.openFile(this.htmlContent);
-    // }
-    this.openFile(file);
+    if (file) {
+      const arrayBuffer = await this.readFile(file);
+      this.htmlContent = await this.convertDocxToHtml(arrayBuffer);
+      this.openFile(this.htmlContent);
+    }
   }
 
   readFile(file: File): Promise<ArrayBuffer> {
